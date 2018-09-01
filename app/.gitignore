@@ -10,3 +10,9 @@
 /onlyLocal.properties
 .idea/
 local.properties
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+
