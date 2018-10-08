@@ -1,5 +1,6 @@
 package com.perrest.restaurante.sincpedidos.presentation.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         logo = findViewById(R.id.splash_logo);
 
         logo.post(() -> rotacionarView(logo,1800));
+        logo.postDelayed(this::irParaTelaDeLogin, 4000);
     }
 
     @Override
@@ -34,5 +36,12 @@ public class SplashActivity extends AppCompatActivity {
         animacao.setDuration(duracao);
         animacao.setRepeatCount(Animation.INFINITE);
         view.startAnimation(animacao);
+    }
+
+    private void irParaTelaDeLogin(){
+        logo.clearAnimation();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
