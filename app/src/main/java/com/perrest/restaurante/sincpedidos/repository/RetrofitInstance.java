@@ -1,4 +1,4 @@
-package com.perrest.restaurante.sincpedidos.network;
+package com.perrest.restaurante.sincpedidos.repository;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

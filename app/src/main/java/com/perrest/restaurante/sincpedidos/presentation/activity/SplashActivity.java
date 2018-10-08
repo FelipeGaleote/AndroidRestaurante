@@ -1,13 +1,14 @@
-package com.perrest.restaurante.sincpedidos;
+package com.perrest.restaurante.sincpedidos.presentation.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+
+import com.perrest.restaurante.sincpedidos.R;
 
 public class SplashActivity extends AppCompatActivity {
 

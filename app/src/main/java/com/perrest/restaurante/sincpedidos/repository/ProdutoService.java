@@ -1,6 +1,6 @@
-package com.perrest.restaurante.sincpedidos.network;
+package com.perrest.restaurante.sincpedidos.repository;
 
-import com.perrest.restaurante.sincpedidos.model.Produto;
+import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
 
 import java.util.List;
 

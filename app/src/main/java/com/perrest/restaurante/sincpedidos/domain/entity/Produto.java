@@ -1,4 +1,4 @@
-package com.perrest.restaurante.sincpedidos.model;
+package com.perrest.restaurante.sincpedidos.domain.entity;
 
 import com.google.gson.annotations.SerializedName;
 
