@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">SincPedidos</string>
+    <string name="nome">Nome</string>
     <string name="email">Email</string>
     <string name="senha">Senha</string>
     <string name="login">Entrar</string>
-    <string name="cadastrar_conta">Você é novo? Cadastre-se</string>
+    <string name="convite_para_cadastro">Você é novo? Cadastre-se</string>
+    <string name="cadastrar_conta">Criar conta</string>
 </resources>

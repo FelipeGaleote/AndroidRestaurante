@@ -4,27 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
-    tools:context=".presentation.activity.LoginActivity">
-
-    <ImageView
-        android:id="@+id/login_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_img_logo"/>
+    tools:context=".presentation.activity.CadastroActivity"
+    android:background="@color/colorPrimaryLight">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_email_input_layout"
+        android:id="@+id/cadastro_nome_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/login_logo"
+        app:layout_constraintBottom_toTopOf="@id/cadastro_email_input_layout"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginBottom="8dp">
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="@string/nome"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/cadastro_email_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/cadastro_senha_input_layout"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp">
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,13 +38,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_senha_input_layout"
+        android:id="@+id/cadastro_senha_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/login_email_input_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginEnd="16dp">
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,10 +53,10 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/login_logar_btn"
+        android:id="@+id/cadastro_logar_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@id/login_senha_input_layout"
+        app:layout_constraintTop_toBottomOf="@id/cadastro_senha_input_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
@@ -59,23 +64,7 @@
         android:layout_marginTop="24dp"
         android:padding="6dp"
         android:background="@color/colorAccent"
-        android:text="@string/login"
+        android:text="@string/cadastrar_conta"
         android:textColor="@color/colorTextIcons"/>
-
-    <Button
-        android:id="@+id/login_cadastrar_btn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@id/login_logar_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="32dp"
-        android:padding="6dp"
-        android:background="@android:color/transparent"
-        android:text="@string/convite_para_cadastro"
-        android:textColor="@color/colorPrimaryText"/>
-
 
 </android.support.constraint.ConstraintLayout>
