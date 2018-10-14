@@ -5,8 +5,12 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.presentation.presenter.LoginPresenter;
@@ -25,6 +29,8 @@ public class LoginActivity extends AppCompatActivity{
     TextInputLayout emailField;
     @BindView(R.id.login_senha_input_layout)
     TextInputLayout passwordField;
+    @BindView(R.id.login_show_password_button)
+    ImageView showPasswordButton;
 
     private LoginPresenter presenter;
 
@@ -99,5 +105,15 @@ public class LoginActivity extends AppCompatActivity{
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @OnClick(R.id.login_show_password_button)
+    protected void changePasswordVisibility(){
+        if(passwordField.getEditText().getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            passwordField.getEditText().setInputType(InputType.TYPE_CLASS_TEXT);
+        } else {
+            passwordField.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+        passwordField.getEditText().setSelection(passwordField.getEditText().getText().length());
     }
 }
