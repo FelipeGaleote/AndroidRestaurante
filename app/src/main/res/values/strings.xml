@@ -6,4 +6,6 @@
     <string name="login">Entrar</string>
     <string name="convite_para_cadastro">Você é novo? Cadastre-se</string>
     <string name="cadastrar_conta">Criar conta</string>
+    <string name="campo_obrigatorio">Este campo é obrigatório</string>
+    <string name="invalid_email">Formato de email inválido</string>
 </resources>
