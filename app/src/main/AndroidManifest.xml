@@ -27,11 +27,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.activity.CadastroActivity"
-            android:parentActivityName=".presentation.activity.LoginActivity"
             android:label="@string/cadastrar_conta"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:parentActivityName=".presentation.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".presentation.activity.MainActivity" />
     </application>
 
 </manifest>
