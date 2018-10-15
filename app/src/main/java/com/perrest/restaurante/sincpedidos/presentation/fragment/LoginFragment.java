@@ -101,7 +101,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
     public void showEmailError(String error){
         if(error.isEmpty()) {
-            emailField.setErrorEnabled(false);
+            emailField.setError(null);
         } else {
             emailField.setError(error);
         }
@@ -109,7 +109,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
     public void showPasswordError(String error){
         if(error.isEmpty()){
-            passwordField.setErrorEnabled(false);
+            passwordField.setError(null);
         } else {
             passwordField.setError(error);
         }
