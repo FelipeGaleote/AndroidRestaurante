@@ -30,8 +30,6 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends Fragment implements LoginView {
 
-    @BindView(R.id.login_cadastrar_btn)
-    Button createAccount;
     @BindView(R.id.login_logar_btn)
     Button login;
     @BindView(R.id.login_email_input_layout)
@@ -83,11 +81,6 @@ public class LoginFragment extends Fragment implements LoginView {
                 presenter.validatePassword(s.toString().trim());
             }
         });
-    }
-
-    @OnClick(R.id.login_cadastrar_btn)
-    protected void goToCreateAccountActivity(){
-
     }
 
     @OnClick(R.id.login_logar_btn)
