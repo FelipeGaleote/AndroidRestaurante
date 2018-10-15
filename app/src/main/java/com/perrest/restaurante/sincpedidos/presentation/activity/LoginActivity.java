@@ -109,11 +109,13 @@ public class LoginActivity extends AppCompatActivity{
 
     @OnClick(R.id.login_show_password_button)
     protected void changePasswordVisibility(){
+        String previusError = passwordField.getError() != null ? passwordField.getError().toString() : "";
         if(passwordField.getEditText().getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
             passwordField.getEditText().setInputType(InputType.TYPE_CLASS_TEXT);
         } else {
             passwordField.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
         passwordField.getEditText().setSelection(passwordField.getEditText().getText().length());
+        showPasswordError(previusError);
     }
 }
