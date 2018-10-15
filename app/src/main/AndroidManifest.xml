@@ -27,11 +27,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme"/>
         <activity
-            android:name=".presentation.activity.CadastroActivity"
-            android:label="@string/cadastrar_conta"
-            android:parentActivityName=".presentation.activity.AuthenticationActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".presentation.activity.MainActivity"
             android:screenOrientation="portrait"/>
     </application>

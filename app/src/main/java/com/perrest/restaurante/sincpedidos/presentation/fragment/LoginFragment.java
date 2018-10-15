@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.perrest.restaurante.sincpedidos.R;
-import com.perrest.restaurante.sincpedidos.presentation.activity.CadastroActivity;
 import com.perrest.restaurante.sincpedidos.presentation.activity.MainActivity;
 import com.perrest.restaurante.sincpedidos.presentation.presenter.LoginPresenter;
 import com.perrest.restaurante.sincpedidos.presentation.view_interface.LoginView;
@@ -88,8 +87,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @OnClick(R.id.login_cadastrar_btn)
     protected void goToCreateAccountActivity(){
-        Intent intent = new Intent(getContext(),CadastroActivity.class);
-        startActivity(intent);
+
     }
 
     @OnClick(R.id.login_logar_btn)

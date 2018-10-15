@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.presentation.fragment.LoginFragment;
+import com.perrest.restaurante.sincpedidos.presentation.fragment.SignUpFragment;
 
 import butterknife.ButterKnife;
 
@@ -17,8 +18,9 @@ public class AuthenticationActivity extends AppCompatActivity{
         ButterKnife.bind(this);
 
         LoginFragment loginFragment = new LoginFragment();
+        SignUpFragment signUpFragment = new SignUpFragment();
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container,loginFragment).commit();
+                .add(R.id.fragment_container,signUpFragment).commit();
     }
 }
