@@ -43,7 +43,7 @@ public class AuthenticationAdapter extends FragmentPagerAdapter {
             case 0:
                 return context.getString(R.string.login);
             case 1:
-                return context.getString(R.string.cadastrar_conta);
+                return context.getString(R.string.create_account);
             default:
                 return null;
         }

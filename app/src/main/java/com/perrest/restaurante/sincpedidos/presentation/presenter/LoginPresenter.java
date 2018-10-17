@@ -27,7 +27,7 @@ public class LoginPresenter {
     public void validateEmail(String email) {
         emailError = "";
         if (email.isEmpty()) {
-            emailError = activity.getString(R.string.campo_obrigatorio);
+            emailError = activity.getString(R.string.requerid_field);
         } else if (!email.contains("@") || !email.contains(".")) {
             emailError = activity.getString(R.string.invalid_email);
         }
@@ -37,7 +37,7 @@ public class LoginPresenter {
     public void validatePassword(String password) {
         passwordError = "";
         if (password.isEmpty()) {
-            passwordError = activity.getString(R.string.campo_obrigatorio);
+            passwordError = activity.getString(R.string.requerid_field);
         }
         view.showPasswordError(passwordError);
     }

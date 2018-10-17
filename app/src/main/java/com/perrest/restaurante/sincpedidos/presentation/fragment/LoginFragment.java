@@ -30,11 +30,11 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends Fragment implements LoginView {
 
-    @BindView(R.id.login_logar_btn)
+    @BindView(R.id.login_signin_button)
     Button login;
     @BindView(R.id.login_email_input_layout)
     TextInputLayout emailField;
-    @BindView(R.id.login_senha_input_layout)
+    @BindView(R.id.login_password_input_layout)
     TextInputLayout passwordField;
     @BindView(R.id.login_show_password_button)
     ImageView showPasswordButton;
@@ -83,7 +83,7 @@ public class LoginFragment extends Fragment implements LoginView {
         });
     }
 
-    @OnClick(R.id.login_logar_btn)
+    @OnClick(R.id.login_signin_button)
     protected void validateFields(){
         String email = emailField.getEditText() != null ? emailField.getEditText().getText().toString() : "";
         String password = passwordField.getEditText() != null ? passwordField.getEditText().getText().toString() : "";

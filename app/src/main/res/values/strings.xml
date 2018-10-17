@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">SincPedidos</string>
-    <string name="nome">Nome</string>
+    <string name="name">Nome</string>
     <string name="email">Email</string>
-    <string name="senha">Senha</string>
+    <string name="password">Senha</string>
     <string name="login">Entrar</string>
-    <string name="convite_para_cadastro">Você é novo? Cadastre-se</string>
-    <string name="cadastrar_conta">Criar conta</string>
-    <string name="campo_obrigatorio">Este campo é obrigatório</string>
+    <string name="create_account">Criar conta</string>
+    <string name="requerid_field">Este campo é obrigatório</string>
     <string name="invalid_email">Formato de email inválido</string>
     <string name="keep_me_loged_in">Mantenha-me conectado</string>
 </resources>
