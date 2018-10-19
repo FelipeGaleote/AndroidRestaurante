@@ -21,8 +21,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         logo = findViewById(R.id.splash_logo);
 
-        logo.post(() -> rotateView(logo,1800));
-        logo.postDelayed(this::goToAuthenticationActivity, 4000);
+        logo.post(() -> rotateView(logo,2000));
+        logo.postDelayed(this::goToAuthenticationActivity, 2000);
     }
 
     @Override
