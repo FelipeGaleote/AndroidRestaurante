@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
+import com.perrest.restaurante.sincpedidos.domain.util.Constants;
 import com.perrest.restaurante.sincpedidos.presentation.adapter.ProductsListAdapter;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ProductsListFragment extends Fragment {
 
     @BindView(R.id.products_list_recycler_view)
     RecyclerView recyclerView;
+
+    private String category;
 
     //Using this constants just to simulate the app behavior while backend isn't ready
     private final int fakeProductsQuantity = 15;
@@ -37,8 +40,13 @@ public class ProductsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_products_list, container, false);
         ButterKnife.bind(this, view);
 
+        if (getArguments() != null) {
+            if (getArguments().getSerializable("category") != null)
+                category = (((Constants.Category) getArguments().getSerializable("category")).toString(getContext()));
+        } else {
+            category = "Produtos";
+        }
         ArrayList<Produto> products = generateFakeProducts();
-
         ProductsListAdapter adapter = new ProductsListAdapter(getContext(), products);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -49,8 +57,8 @@ public class ProductsListFragment extends Fragment {
     private ArrayList<Produto> generateFakeProducts() {
         ArrayList<Produto> generatedList = new ArrayList<>();
         for (int i = 0; i < fakeProductsQuantity; i++) {
-            String name = "Produto " + (i+1);
-            String description = "Esta é a descrição do " + name;
+            String name = String.format("%s %d", category, (i + 1));
+            String description = "Aqui ficara a descrição do produto, no caso : " + name;
             double price = (Math.random() * fakeProductsQuantity * 4);
             Produto product = new Produto(i, name, description, price);
             generatedList.add(product);
