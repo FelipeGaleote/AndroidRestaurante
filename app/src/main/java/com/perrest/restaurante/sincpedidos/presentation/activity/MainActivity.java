@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.util.Constants;
 import com.perrest.restaurante.sincpedidos.presentation.fragment.CategoriesFragment;
+import com.perrest.restaurante.sincpedidos.presentation.fragment.ProductsListFragment;
 
 public class MainActivity extends AppCompatActivity implements CategoriesFragment.OnCategorySelectedListener {
 
@@ -14,10 +15,11 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CategoriesFragment categoriesFragment = new CategoriesFragment();
+//        CategoriesFragment categoriesFragment = new CategoriesFragment();
+        ProductsListFragment productsListFragment = new ProductsListFragment();
 
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_placeholder, categoriesFragment);
+        fragmentTransaction.add(R.id.fragment_placeholder, productsListFragment);
         fragmentTransaction.commit();
 
         if(getSupportActionBar() != null)
