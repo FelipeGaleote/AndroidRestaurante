@@ -1,6 +1,5 @@
 package com.perrest.restaurante.sincpedidos.presentation.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,6 +12,8 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
 
     private CategoriesFragment categoriesFragment;
     private ProductsListFragment productsListFragment;
+    private final String CATEGORY_FRAGMENT = "category";
+    private final String PRODUCT_LIST_FRAGMENT = "product_list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,28 +22,36 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
 
         categoriesFragment = new CategoriesFragment();
         categoriesFragment.setOnCategorySelectedListener(this);
-        changeFragment(categoriesFragment);
+        changeFragment(categoriesFragment, CATEGORY_FRAGMENT);
 
-        if(getSupportActionBar() != null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(R.string.categories);
     }
 
     @Override
     public void onCategorySelected(Constants.Category category) {
-        if(productsListFragment == null)
+        if (productsListFragment == null)
             productsListFragment = new ProductsListFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("category",category);
+        bundle.putSerializable("category", category);
         productsListFragment.setArguments(bundle);
-        changeFragment(productsListFragment);
-        if(getSupportActionBar() != null)
+        changeFragment(productsListFragment, PRODUCT_LIST_FRAGMENT);
+        if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(category.toString(this));
     }
 
-    private void changeFragment(android.support.v4.app.Fragment fragment){
+    private void changeFragment(android.support.v4.app.Fragment fragment, String fragmentTag) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_placeholder, fragment);
+        if (fragmentTag.equals(PRODUCT_LIST_FRAGMENT))
+            fragmentTransaction.addToBackStack(fragmentTag);
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        getSupportFragmentManager().popBackStack();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle(R.string.categories);
+    }
 }
