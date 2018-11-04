@@ -11,12 +11,18 @@ public class Produto {
     private String descricao;
     @SerializedName("valor")
     private double valor;
+    @SerializedName("tipo")
+    private String tipo;
+    @SerializedName("urlFoto")
+    private String urlFoto;
 
-    public Produto(int id, String nome, String descricao, double valor) {
+    public Produto(int id, String nome, String descricao, double valor, String tipo, String urlFoto) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
+        this.tipo = tipo;
+        this.urlFoto = urlFoto;
     }
 
     public int getId() {
@@ -49,5 +55,21 @@ public class Produto {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 }

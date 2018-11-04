@@ -60,7 +60,7 @@ public class ProductsListFragment extends Fragment {
             String name = String.format("%s %d", category, (i + 1));
             String description = "Aqui ficara a descrição do produto, no caso : " + name;
             double price = (Math.random() * fakeProductsQuantity * 4);
-            Produto product = new Produto(i, name, description, price);
+            Produto product = new Produto(i, name, description, price,"teste","teste");
             generatedList.add(product);
         }
         return generatedList;

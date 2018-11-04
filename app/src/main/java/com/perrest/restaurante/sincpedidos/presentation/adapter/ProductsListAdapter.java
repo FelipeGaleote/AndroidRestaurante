@@ -51,10 +51,9 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
         viewHolder.productDescription.setText(product.getDescricao());
         viewHolder.productPrice.setText(String.format("R$ %.2f", product.getValor()));
         viewHolder.productBuy.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("listener", this);
-            DialogFragment dialog = new AddProductDialogFragment();
-            dialog.setArguments(bundle);
+            AddProductDialogFragment dialog = new AddProductDialogFragment();
+            dialog.setListener(this);
+            dialog.setProduto(product);
             dialog.show(fragmentManager, "AddProductDialogFragment");
         });
     }
@@ -65,7 +64,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
     }
 
     @Override
-    public void onConfirmClick(String quantity) {
+    public void onConfirmClick(String quantity, Produto produto) {
         Toast.makeText(context, "Você acaba de pedir " + quantity + " produtos!", Toast.LENGTH_LONG).show();
     }
 

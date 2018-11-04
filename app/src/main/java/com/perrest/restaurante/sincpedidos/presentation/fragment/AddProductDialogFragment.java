@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.perrest.restaurante.sincpedidos.R;
+import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 public class AddProductDialogFragment extends DialogFragment {
 
     public interface OnClickListener {
-        void onConfirmClick(String quantity);
+        void onConfirmClick(String quantity, Produto produto);
     }
 
     @BindView(R.id.dialog_plus_button)
@@ -32,6 +33,8 @@ public class AddProductDialogFragment extends DialogFragment {
     protected EditText quantityEditText;
 
     private OnClickListener listener;
+    private Produto produto;
+
     public AddProductDialogFragment() {
         // Required empty public constructor
     }
@@ -42,8 +45,6 @@ public class AddProductDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_add_product, container, false);
 
         ButterKnife.bind(this,view);
-
-        listener = (OnClickListener) getArguments().getSerializable("listener");
 
         plusButton.setOnClickListener(v -> {
             int quantity = Integer.valueOf(quantityEditText.getText().toString());
@@ -58,9 +59,17 @@ public class AddProductDialogFragment extends DialogFragment {
         });
 
         confirmButton.setOnClickListener(v -> {
-            listener.onConfirmClick(quantityEditText.getText().toString());
+            listener.onConfirmClick(quantityEditText.getText().toString(), produto);
             dismiss();
         });
         return view;
+    }
+
+    public void setListener(OnClickListener listener){
+        this.listener = listener;
+    }
+
+    public void setProduto(Produto produto){
+        this.produto = produto;
     }
 }
