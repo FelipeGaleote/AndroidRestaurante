@@ -13,24 +13,28 @@ import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
 import com.perrest.restaurante.sincpedidos.domain.util.Constants;
 import com.perrest.restaurante.sincpedidos.presentation.adapter.ProductsListAdapter;
+import com.perrest.restaurante.sincpedidos.repository.ProductRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductsListFragment extends Fragment {
+public class ProductsListFragment extends Fragment implements ProductRepository.ProductsLoadListener {
 
     @BindView(R.id.products_list_recycler_view)
     RecyclerView recyclerView;
 
-    private String category;
+    private Constants.Category category;
+    private ProductsListAdapter adapter;
+    private ProductRepository repository;
 
     //Using this constants just to simulate the app behavior while backend isn't ready
     private final int fakeProductsQuantity = 15;
 
     public ProductsListFragment() {
-        // Required empty public constructor
+        repository = new ProductRepository(this);
     }
 
 
@@ -40,18 +44,40 @@ public class ProductsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_products_list, container, false);
         ButterKnife.bind(this, view);
 
-        if (getArguments() != null) {
-            if (getArguments().getSerializable("category") != null)
-                category = (((Constants.Category) getArguments().getSerializable("category")).toString(getContext()));
-        } else {
-            category = "Produtos";
-        }
-        ArrayList<Produto> products = generateFakeProducts();
-        ProductsListAdapter adapter = new ProductsListAdapter(getContext(), products,getActivity().getSupportFragmentManager());
+        configRecyclerView();
+        loadProducts();
+
+        return view;
+    }
+
+
+    private void configRecyclerView(){
+        adapter = new ProductsListAdapter(getContext(), getActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.getAdapter().notifyDataSetChanged();
-        return view;
+    }
+
+    private void loadProducts(){
+        switch (category){
+            case BURGERS:
+                repository.findAllBurgers();
+                break;
+            case DRINKS:
+                repository.findAllDrinks();
+                break;
+            case PIZZAS:
+                repository.findAllPizzas();
+                break;
+            case SALADS:
+                repository.findAllSalads();
+                break;
+            case SNACKS:
+                repository.findAllSnacks();
+                break;
+            case DESSERTS:
+                repository.findAllDesserts();
+                break;
+        }
     }
 
     private ArrayList<Produto> generateFakeProducts() {
@@ -60,9 +86,28 @@ public class ProductsListFragment extends Fragment {
             String name = String.format("%s %d", category, (i + 1));
             String description = "Aqui ficara a descrição do produto, no caso : " + name;
             double price = (Math.random() * fakeProductsQuantity * 4);
-            Produto product = new Produto(i, name, description, price,"teste","teste");
+            Produto product = new Produto(i, name, description, price, "teste", "teste");
             generatedList.add(product);
         }
         return generatedList;
+    }
+
+    public void setCategory(Constants.Category category){
+        this.category = category;
+    }
+
+    @Override
+    public void onSuccess(List<Produto> products) {
+        adapter.refreshProducts(products);
+    }
+
+    @Override
+    public void onEmptyList() {
+
+    }
+
+    @Override
+    public void onError() {
+
     }
 }

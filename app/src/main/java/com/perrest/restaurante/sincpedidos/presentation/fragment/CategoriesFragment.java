@@ -58,7 +58,7 @@ public class CategoriesFragment extends Fragment {
                 category = Constants.Category.BURGERS;
                 break;
             case R.id.categories_pizzas:
-                category = Constants.Category.PIZZA;
+                category = Constants.Category.PIZZAS;
                 break;
             case R.id.categories_salads:
                 category = Constants.Category.SALADS;

@@ -19,20 +19,21 @@ import com.perrest.restaurante.sincpedidos.presentation.fragment.AddProductDialo
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductsListAdapter extends RecyclerView.Adapter implements AddProductDialogFragment.OnClickListener, Serializable {
 
-    private ArrayList<Produto> products;
+    private List<Produto> products;
     private Context context;
     private FragmentManager fragmentManager;
 
-    public ProductsListAdapter(Context context, ArrayList<Produto> products, FragmentManager fragmentManager) {
+    public ProductsListAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
-        this.products = products != null ? products : new ArrayList<>();
         this.fragmentManager = fragmentManager;
+        this.products = new ArrayList<>();
     }
 
     @NonNull
@@ -66,6 +67,11 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
     @Override
     public void onConfirmClick(String quantity, Produto produto) {
         Toast.makeText(context, "Você acaba de pedir " + quantity + " produtos!", Toast.LENGTH_LONG).show();
+    }
+
+    public void refreshProducts(List<Produto> products){
+        this.products = products;
+        notifyDataSetChanged();
     }
 
     protected class ViewHolder extends RecyclerView.ViewHolder {

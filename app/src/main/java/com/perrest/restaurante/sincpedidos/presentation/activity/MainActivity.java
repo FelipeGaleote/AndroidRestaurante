@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
     public void onCategorySelected(Constants.Category category) {
         if (productsListFragment == null)
             productsListFragment = new ProductsListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("category", category);
-        productsListFragment.setArguments(bundle);
+        productsListFragment.setCategory(category);
+
         changeFragment(productsListFragment, PRODUCT_LIST_FRAGMENT);
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(category.toString(this));
