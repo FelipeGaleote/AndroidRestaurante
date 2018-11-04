@@ -47,7 +47,7 @@ public class ProductsListFragment extends Fragment {
             category = "Produtos";
         }
         ArrayList<Produto> products = generateFakeProducts();
-        ProductsListAdapter adapter = new ProductsListAdapter(getContext(), products);
+        ProductsListAdapter adapter = new ProductsListAdapter(getContext(), products,getActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.getAdapter().notifyDataSetChanged();
