@@ -23,7 +23,7 @@ public class SignupPresenter {
         validateEmail(email);
         validatePassword(password);
         if (emailError.isEmpty() && passwordError.isEmpty())
-            view.goToMainActivity();
+            proceed();
     }
 
     public void validateName(String name) {
@@ -50,5 +50,9 @@ public class SignupPresenter {
             passwordError = activity.getString(R.string.requerid_field);
         }
         view.showPasswordError(passwordError);
+    }
+
+    private void proceed(){
+        view.goToChooseTableActivity();
     }
 }

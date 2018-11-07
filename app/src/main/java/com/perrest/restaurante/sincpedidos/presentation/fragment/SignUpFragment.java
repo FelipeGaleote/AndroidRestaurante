@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.perrest.restaurante.sincpedidos.R;
+import com.perrest.restaurante.sincpedidos.presentation.activity.ChooseTableActivity;
 import com.perrest.restaurante.sincpedidos.presentation.activity.MainActivity;
 import com.perrest.restaurante.sincpedidos.presentation.presenter.SignupPresenter;
 import com.perrest.restaurante.sincpedidos.presentation.view_interface.SignUpView;
@@ -146,6 +147,15 @@ public class SignUpFragment extends Fragment implements SignUpView {
         startActivity(intent);
         if (getActivity() != null)
             getActivity().finish();
+    }
+
+    @Override
+    public void goToChooseTableActivity() {
+        Intent intent = new Intent(getContext(), ChooseTableActivity.class);
+        startActivity(intent);
+        if (getActivity() != null) {
+            getActivity().finish();
+        }
     }
 
     @OnClick(R.id.signup_show_password_button)

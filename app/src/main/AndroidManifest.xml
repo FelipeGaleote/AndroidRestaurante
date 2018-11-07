@@ -25,10 +25,11 @@
             android:name=".presentation.activity.AuthenticationActivity"
             android:label="@string/login"
             android:screenOrientation="portrait"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".presentation.activity.MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".presentation.activity.ChooseTableActivity"></activity>
     </application>
 
 </manifest>

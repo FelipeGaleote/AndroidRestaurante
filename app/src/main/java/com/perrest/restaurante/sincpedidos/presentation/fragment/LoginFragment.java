@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.perrest.restaurante.sincpedidos.R;
+import com.perrest.restaurante.sincpedidos.presentation.activity.ChooseTableActivity;
 import com.perrest.restaurante.sincpedidos.presentation.activity.MainActivity;
 import com.perrest.restaurante.sincpedidos.presentation.presenter.LoginPresenter;
 import com.perrest.restaurante.sincpedidos.presentation.view_interface.LoginView;
@@ -41,27 +42,29 @@ public class LoginFragment extends Fragment implements LoginView {
 
     private LoginPresenter presenter;
 
-    public LoginFragment() {}
-
+    public LoginFragment() {
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         configFields();
         presenter = new LoginPresenter(this);
         return view;
     }
 
-    private void configFields(){
+    private void configFields() {
         emailField.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -71,10 +74,12 @@ public class LoginFragment extends Fragment implements LoginView {
 
         passwordField.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -84,22 +89,22 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     @OnClick(R.id.login_signin_button)
-    protected void validateFields(){
+    protected void validateFields() {
         String email = emailField.getEditText() != null ? emailField.getEditText().getText().toString() : "";
         String password = passwordField.getEditText() != null ? passwordField.getEditText().getText().toString() : "";
-        presenter.validateAllFields(email,password);
+        presenter.validateAllFields(email, password);
     }
 
-    public void showEmailError(String error){
-        if(error.isEmpty()) {
+    public void showEmailError(String error) {
+        if (error.isEmpty()) {
             emailField.setError(null);
         } else {
             emailField.setError(error);
         }
     }
 
-    public void showPasswordError(String error){
-        if(error.isEmpty()){
+    public void showPasswordError(String error) {
+        if (error.isEmpty()) {
             passwordField.setError(null);
         } else {
             passwordField.setError(error);
@@ -107,17 +112,26 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     @Override
-    public void goToMainActivity(){
+    public void goToMainActivity() {
         Intent intent = new Intent(getContext(), MainActivity.class);
         startActivity(intent);
-        if(getActivity() != null)
+        if (getActivity() != null)
             getActivity().finish();
     }
 
+    @Override
+    public void goToChooseTableActivity() {
+        Intent intent = new Intent(getContext(), ChooseTableActivity.class);
+        startActivity(intent);
+        if (getActivity() != null) {
+            getActivity().finish();
+        }
+    }
+
     @OnClick(R.id.login_show_password_button)
-    protected void changePasswordVisibility(){
+    protected void changePasswordVisibility() {
         String previusError = passwordField.getError() != null ? passwordField.getError().toString() : "";
-        if(passwordField.getEditText().getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+        if (passwordField.getEditText().getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
             passwordField.getEditText().setInputType(InputType.TYPE_CLASS_TEXT);
         } else {
             passwordField.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -133,6 +147,6 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void showToast(String message) {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 }

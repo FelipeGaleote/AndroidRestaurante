@@ -21,7 +21,7 @@ public class LoginPresenter {
         validateEmail(email);
         validatePassword(password);
         if (emailError.isEmpty() && passwordError.isEmpty())
-            view.goToMainActivity();
+            proceed();
     }
 
     public void validateEmail(String email) {
@@ -40,5 +40,9 @@ public class LoginPresenter {
             passwordError = activity.getString(R.string.requerid_field);
         }
         view.showPasswordError(passwordError);
+    }
+
+    private void proceed(){
+        view.goToChooseTableActivity();
     }
 }
