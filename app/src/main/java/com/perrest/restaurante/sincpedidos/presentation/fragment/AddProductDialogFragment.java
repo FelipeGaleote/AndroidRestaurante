@@ -54,8 +54,10 @@ public class AddProductDialogFragment extends DialogFragment {
 
         minusButton.setOnClickListener(v -> {
             int quantity = Integer.valueOf(quantityEditText.getText().toString());
-            quantity--;
-            quantityEditText.setText(String.valueOf(quantity));
+            if(quantity > 1){
+                quantity--;
+                quantityEditText.setText(String.valueOf(quantity));
+            }
         });
 
         confirmButton.setOnClickListener(v -> {
