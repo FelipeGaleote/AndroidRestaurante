@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
 
     public static Retrofit retrofit;
-    public static String BASE_URL = "http://192.168.1.105:8080/";
+    public static String BASE_URL = " https://sinc-pedidos.herokuapp.com/";
 
     public static Retrofit getRetrofitInstance(){
 
