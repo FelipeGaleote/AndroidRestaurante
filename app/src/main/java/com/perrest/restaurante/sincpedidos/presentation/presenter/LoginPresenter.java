@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.presentation.view_interface.LoginView;
+import com.perrest.restaurante.sincpedidos.util.SharedPrefsUtil;
 
 public class LoginPresenter {
     private LoginView view;
@@ -43,6 +44,9 @@ public class LoginPresenter {
     }
 
     private void proceed(){
-        view.goToChooseTableActivity();
+        if(SharedPrefsUtil.getSelectedTable(activity.getBaseContext()) == -1)
+            view.goToChooseTableActivity();
+        else
+            view.goToMainActivity();
     }
 }

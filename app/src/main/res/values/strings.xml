@@ -16,6 +16,10 @@
     <string name="drinks">Bebidas</string>
     <string name="categories">Categorias</string>
     <string name="choose_your_table">Escolha sua mesa</string>
+    <string name="this_table_is_busy">Essa mesa está ocupada</string>
+
+
+    <string name="shared_prefs">SHARED_PREFS</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

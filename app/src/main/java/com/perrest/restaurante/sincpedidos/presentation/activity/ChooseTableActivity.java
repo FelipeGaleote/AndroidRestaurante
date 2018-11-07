@@ -1,5 +1,6 @@
 package com.perrest.restaurante.sincpedidos.presentation.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChooseTableActivity extends AppCompatActivity implements TableRepository.TableLoadListener{
+public class ChooseTableActivity extends AppCompatActivity implements TableRepository.TableListener {
 
     @BindView(R.id.table_recycler_view)
     RecyclerView recyclerView;
@@ -30,7 +31,7 @@ public class ChooseTableActivity extends AppCompatActivity implements TableRepos
 
         ButterKnife.bind(this);
 
-        repository = new TableRepository(this);
+        repository = new TableRepository(this, this);
 
         getSupportActionBar().setTitle(getString(R.string.choose_your_table));
 
@@ -39,7 +40,7 @@ public class ChooseTableActivity extends AppCompatActivity implements TableRepos
     }
 
     private void configRecyclerView(){
-        adapter = new TablesAdapter(getApplicationContext());
+        adapter = new TablesAdapter(getApplicationContext(), id -> repository.takeTable(id));
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),4));
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -50,12 +51,24 @@ public class ChooseTableActivity extends AppCompatActivity implements TableRepos
     }
 
     @Override
-    public void onSuccess(List<Mesa> tables) {
+    public void onLoadSuccess(List<Mesa> tables) {
         adapter.setTable(tables);
     }
 
     @Override
-    public void onFailed() {
+    public void onLoadFailed() {
+
+    }
+
+    @Override
+    public void onTableTakeSuccess() {
+        Intent intent = new Intent(ChooseTableActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onTableTakeFailed() {
 
     }
 }
