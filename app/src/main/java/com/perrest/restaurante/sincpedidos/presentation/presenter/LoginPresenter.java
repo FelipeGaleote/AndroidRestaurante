@@ -18,11 +18,15 @@ public class LoginPresenter {
         this.activity = view.getActivityFromView();
     }
 
-    public void validateAllFields(String email, String password) {
+    public void validateAllFields(String email, String password, boolean keepLoggedIn) {
         validateEmail(email);
         validatePassword(password);
-        if (emailError.isEmpty() && passwordError.isEmpty())
+        if (emailError.isEmpty() && passwordError.isEmpty()){
+            if(keepLoggedIn){
+                SharedPrefsUtil.saveLoginInfo(activity.getBaseContext(),email,password);
+            }
             proceed();
+        }
     }
 
     public void validateEmail(String email) {

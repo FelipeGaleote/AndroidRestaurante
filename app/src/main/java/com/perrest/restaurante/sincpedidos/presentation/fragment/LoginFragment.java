@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class LoginFragment extends Fragment implements LoginView {
     TextInputLayout passwordField;
     @BindView(R.id.login_show_password_button)
     ImageView showPasswordButton;
+    @BindView(R.id.login_save_password_checkbox)
+    CheckBox keepLoggedInCheckbox;
 
     private LoginPresenter presenter;
 
@@ -92,7 +95,7 @@ public class LoginFragment extends Fragment implements LoginView {
     protected void validateFields() {
         String email = emailField.getEditText() != null ? emailField.getEditText().getText().toString() : "";
         String password = passwordField.getEditText() != null ? passwordField.getEditText().getText().toString() : "";
-        presenter.validateAllFields(email, password);
+        presenter.validateAllFields(email, password, keepLoggedInCheckbox.isChecked());
     }
 
     public void showEmailError(String error) {
