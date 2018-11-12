@@ -1,6 +1,7 @@
 package com.perrest.restaurante.sincpedidos.repository;
 
 import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
+import com.perrest.restaurante.sincpedidos.domain.responses.RetrievedProductsResponse;
 
 import java.util.List;
 
@@ -10,20 +11,20 @@ import retrofit2.http.GET;
 public interface ProdutoService {
 
     @GET("produto/lanches")
-    Call<List<Produto>> findAllBurgers();
+    Call<RetrievedProductsResponse> findAllBurgers();
 
     @GET("produto/pizzas")
-    Call<List<Produto>> findAllPizzas();
+    Call<RetrievedProductsResponse> findAllPizzas();
 
     @GET("produto/saladas")
-    Call<List<Produto>> findAllSalads();
+    Call<RetrievedProductsResponse> findAllSalads();
 
     @GET("produto/petiscos")
-    Call<List<Produto>> findAllSnacks();
+    Call<RetrievedProductsResponse> findAllSnacks();
 
     @GET("produto/sobremesas")
-    Call<List<Produto>> findAllDesserts();
+    Call<RetrievedProductsResponse> findAllDesserts();
 
     @GET("produto/bebidas")
-    Call<List<Produto>> findAllDrinks();
+    Call<RetrievedProductsResponse> findAllDrinks();
 }
