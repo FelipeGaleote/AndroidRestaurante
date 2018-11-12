@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.perrest.restaurante.sincpedidos.R;
+import com.perrest.restaurante.sincpedidos.domain.entity.Pedido;
 import com.perrest.restaurante.sincpedidos.domain.util.Constants;
 import com.perrest.restaurante.sincpedidos.presentation.fragment.CategoriesFragment;
 import com.perrest.restaurante.sincpedidos.presentation.fragment.ProductsListFragment;
+import com.perrest.restaurante.sincpedidos.repository.PedidoRepository;
+import com.perrest.restaurante.sincpedidos.util.SharedPrefsUtil;
 
-public class MainActivity extends AppCompatActivity implements CategoriesFragment.OnCategorySelectedListener {
+public class MainActivity extends AppCompatActivity implements CategoriesFragment.OnCategorySelectedListener, PedidoRepository.OrderListener {
 
     private CategoriesFragment categoriesFragment;
     private ProductsListFragment productsListFragment;
@@ -26,6 +29,12 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(R.string.categories);
+
+        PedidoRepository pedidoRepository = new PedidoRepository(this);
+        Pedido pedido = new Pedido();
+        pedido.setIdMesa(SharedPrefsUtil.getSelectedTable(this));
+        pedido.setIdUsuario(SharedPrefsUtil.getToken(this));
+        pedidoRepository.saveOrder(pedido);
     }
 
     @Override
@@ -52,5 +61,15 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
         getSupportFragmentManager().popBackStack();
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(R.string.categories);
+    }
+
+    @Override
+    public void onOrderCreated(long orderId) {
+        SharedPrefsUtil.saveOrderId(this, orderId);
+    }
+
+    @Override
+    public void onOrderCreateFailed() {
+
     }
 }

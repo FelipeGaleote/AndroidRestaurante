@@ -14,6 +14,7 @@ public class SharedPrefsUtil {
     private static final String usernameKey = "username_key";
     private static final String passwordKey = "password_key";
     private static final String tokenKey = "token_key";
+    private static final String orderIdKey = "order_id_key";
 
     public static void saveSelectedTable(Context context, int id) {
         SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE).edit();
@@ -56,5 +57,16 @@ public class SharedPrefsUtil {
     public static String getToken(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE);
         return sharedPreferences.getString(tokenKey, "");
+    }
+
+    public static void saveOrderId(Context context, long orderId){
+        SharedPreferences.Editor editor = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE).edit();
+        editor.putLong(orderIdKey, orderId);
+        editor.apply();
+    }
+
+    public static long getOrderId(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE);
+        return sharedPreferences.getLong(orderIdKey, 0);
     }
 }

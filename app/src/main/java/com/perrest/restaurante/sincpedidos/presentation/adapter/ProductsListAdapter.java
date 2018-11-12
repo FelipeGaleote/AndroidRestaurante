@@ -70,6 +70,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
 
     @Override
     public void onConfirmClick(String quantity, Produto produto) {
+
         Toast.makeText(context, "Você acaba de pedir " + quantity + " produtos!", Toast.LENGTH_LONG).show();
     }
 
