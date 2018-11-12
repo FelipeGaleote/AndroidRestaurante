@@ -45,4 +45,6 @@ dependencies {
     implementation "com.android.support:gridlayout-v7:$versao_appcompat"
     implementation "com.jakewharton:butterknife:$versao_butterknife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$versao_butterknife"
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
 import com.perrest.restaurante.sincpedidos.presentation.fragment.AddProductDialogFragment;
@@ -57,6 +58,9 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
             dialog.setProduto(product);
             dialog.show(fragmentManager, "AddProductDialogFragment");
         });
+        Glide.with(context)
+                .load(product.getUrlFoto())
+                .into(viewHolder.productPhoto);
     }
 
     @Override
@@ -76,6 +80,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.product_photo)
         ImageView productPhoto;
         @BindView(R.id.product_name)
         TextView productName;
