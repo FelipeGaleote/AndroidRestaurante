@@ -15,8 +15,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.perrest.restaurante.sincpedidos.R;
+import com.perrest.restaurante.sincpedidos.domain.entity.Item;
 import com.perrest.restaurante.sincpedidos.domain.entity.Produto;
 import com.perrest.restaurante.sincpedidos.presentation.fragment.AddProductDialogFragment;
+import com.perrest.restaurante.sincpedidos.repository.ItemRepository;
+import com.perrest.restaurante.sincpedidos.util.SharedPrefsUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,16 +28,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductsListAdapter extends RecyclerView.Adapter implements AddProductDialogFragment.OnClickListener, Serializable {
+public class ProductsListAdapter extends RecyclerView.Adapter implements AddProductDialogFragment.OnClickListener, Serializable, ItemRepository.ItemListener {
 
     private List<Produto> products;
     private Context context;
     private FragmentManager fragmentManager;
+    private ItemRepository itemRepository;
 
     public ProductsListAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
         this.fragmentManager = fragmentManager;
         this.products = new ArrayList<>();
+        this.itemRepository = new ItemRepository(this);
     }
 
     @NonNull
@@ -70,13 +75,27 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
 
     @Override
     public void onConfirmClick(String quantity, Produto produto) {
-
-        Toast.makeText(context, "Você acaba de pedir " + quantity + " produtos!", Toast.LENGTH_LONG).show();
+        Item item = new Item();
+        item.setIdPedido(SharedPrefsUtil.getOrderId(context));
+        item.setIdProduto(produto.getId());
+        item.setNomeProduto(produto.getNome());
+        item.setQuantidade(Integer.parseInt(quantity));
+        itemRepository.addItem(item);
     }
 
     public void refreshProducts(List<Produto> products){
         this.products = products;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemAdded(String itemName, int itemQuantity) {
+        Toast.makeText(context, String.format("Você acaba de pedir %s %s", itemQuantity ,itemName), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemAddFailed() {
+
     }
 
     protected class ViewHolder extends RecyclerView.ViewHolder {

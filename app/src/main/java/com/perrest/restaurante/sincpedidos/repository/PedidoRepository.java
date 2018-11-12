@@ -29,7 +29,8 @@ public class PedidoRepository {
             @Override
             public void onResponse(Call<CreatedOrderResponse> call, Response<CreatedOrderResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getStatusCode() == 201) {
-                    listener.onOrderCreated(response.body().getOrder().getId());
+                    if(response.body().getOrder() != null)
+                        listener.onOrderCreated(response.body().getOrder().getId());
                 } else {
                     listener.onOrderCreateFailed();
                 }
