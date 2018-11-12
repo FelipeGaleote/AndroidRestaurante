@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.entity.Mesa;
@@ -61,7 +62,8 @@ public class ChooseTableActivity extends AppCompatActivity implements TableRepos
     }
 
     @Override
-    public void onTableTakeSuccess() {
+    public void onTableTakeSuccess(long tableId) {
+        Toast.makeText(this,"Mesa " + tableId + " selecionada", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ChooseTableActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
