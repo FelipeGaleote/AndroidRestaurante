@@ -11,9 +11,10 @@ import android.widget.ImageView;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.entity.User;
+import com.perrest.restaurante.sincpedidos.repository.UserRepository;
 import com.perrest.restaurante.sincpedidos.util.SharedPrefsUtil;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements UserRepository.UserAuthListener {
 
     private ImageView logo;
 
@@ -23,8 +24,11 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         logo = findViewById(R.id.splash_logo);
 
-        logo.post(() -> rotateView(logo, 2000));
-        logo.postDelayed(this::goToNextActivity, 2000);
+        User user = SharedPrefsUtil.getLoginInfo(this);
+        UserRepository repository = new UserRepository(this);
+        repository.login(user);
+
+        logo.post(() -> rotateView(logo, 3000));
     }
 
     @Override
@@ -40,18 +44,27 @@ public class SplashActivity extends AppCompatActivity {
         view.startAnimation(animation);
     }
 
-    private void goToNextActivity() {
-        logo.clearAnimation();
-        User user = SharedPrefsUtil.getLoginInfo(getBaseContext());
+    @Override
+    public void onUserAuthenticated(String userId) {
+        SharedPrefsUtil.saveToken(this, userId);
         Intent intent;
-        if (user.getEmail().isEmpty() || user.getPassword().isEmpty()) {
-            intent = new Intent(this, AuthenticationActivity.class);
-        } else if (SharedPrefsUtil.getSelectedTable(getBaseContext()) != -1) {
+        if (SharedPrefsUtil.getSelectedTable(getBaseContext()) != -1) {
             intent = new Intent(this, MainActivity.class);
         } else {
             intent = new Intent(this, ChooseTableActivity.class);
         }
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onUserRegistered(String userId) {
+
+    }
+
+    @Override
+    public void onFailed(String errorMessage) {
+        startActivity(new Intent(this, AuthenticationActivity.class));
         finish();
     }
 }

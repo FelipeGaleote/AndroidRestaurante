@@ -11,8 +11,9 @@ public class SharedPrefsUtil {
     private static final String tableKey = "table_key";
     private static final String tableSelectedTimestampKey = "table_selected_timestamp";
     private static final long fourHours = 14400000L;
-    private static final String emailKey = "email_key";
+    private static final String usernameKey = "username_key";
     private static final String passwordKey = "password_key";
+    private static final String tokenKey = "token_key";
 
     public static void saveSelectedTable(Context context, int id) {
         SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE).edit();
@@ -31,18 +32,29 @@ public class SharedPrefsUtil {
         }
     }
 
-    public static void saveLoginInfo(Context context, String email, String password) {
+    public static void saveLoginInfo(Context context, User user) {
         SharedPreferences.Editor editor = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE).edit();
-        editor.putString(emailKey, email);
-        editor.putString(passwordKey, password);
+        editor.putString(usernameKey, user.getNomeUsuario());
+        editor.putString(passwordKey, user.getSenha());
         editor.apply();
     }
 
     public static User getLoginInfo(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE);
         User user = new User();
-        user.setEmail(sharedPreferences.getString(emailKey, ""));
-        user.setPassword(sharedPreferences.getString(passwordKey, ""));
+        user.setNomeUsuario(sharedPreferences.getString(usernameKey, ""));
+        user.setSenha(sharedPreferences.getString(passwordKey, ""));
         return user;
+    }
+
+    public static void saveToken(Context context, String token) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE).edit();
+        editor.putString(tokenKey, token);
+        editor.apply();
+    }
+
+    public static String getToken(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs), Context.MODE_PRIVATE);
+        return sharedPreferences.getString(tokenKey, "");
     }
 }

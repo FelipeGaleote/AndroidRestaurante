@@ -2,29 +2,39 @@ package com.perrest.restaurante.sincpedidos.domain.entity;
 
 public class User {
 
-    private String email;
-    private String password;
+    private String nomeCompleto;
+    private String nomeUsuario;
+    private String senha;
 
     public User(){}
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public User(String nomeCompleto, String nomeUsuario, String senha) {
+        this.nomeCompleto = nomeCompleto;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 }
