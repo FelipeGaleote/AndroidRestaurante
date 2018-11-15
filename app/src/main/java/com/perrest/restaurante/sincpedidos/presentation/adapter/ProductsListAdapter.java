@@ -98,6 +98,16 @@ public class ProductsListAdapter extends RecyclerView.Adapter implements AddProd
 
     }
 
+    @Override
+    public void onItensRetrieved(List<Item> itens, List<Produto> produtos) {
+
+    }
+
+    @Override
+    public void onItensRetrieveFailed() {
+
+    }
+
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.product_photo)

@@ -9,18 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/product_photo"
+            android:id="@+id/pedido_foto"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/img_pizza"
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/product_name"
+            android:id="@+id/pedido_nome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/product_photo"
+            app:layout_constraintStart_toEndOf="@id/pedido_foto"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             android:maxLines="1"
@@ -29,37 +29,37 @@
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryText"/>
         <TextView
-            android:id="@+id/product_description"
+            android:id="@+id/pedido_quantidade"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_weight="1"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/product_name"
-            app:layout_constraintStart_toEndOf="@id/product_photo"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toBottomOf="@id/pedido_nome"
+            app:layout_constraintStart_toEndOf="@id/pedido_foto"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="3"/>
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/pedido_preco_unitario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/pedido_quantidade"
+            app:layout_constraintStart_toStartOf="@id/pedido_quantidade"/>
+
+        <TextView
+            android:id="@+id/pedido_preco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="@id/product_buy"
-            app:layout_constraintBottom_toBottomOf="@id/product_buy"
-            app:layout_constraintEnd_toStartOf="@id/product_buy"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="8dp"/>
 
-        <ImageView
-            android:id="@+id/product_buy"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_add_black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:tint="@color/colorAccent"/>
 
     </android.support.constraint.ConstraintLayout>
 

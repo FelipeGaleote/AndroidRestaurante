@@ -1,7 +1,11 @@
 package com.perrest.restaurante.sincpedidos.presentation.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.perrest.restaurante.sincpedidos.R;
 import com.perrest.restaurante.sincpedidos.domain.entity.Pedido;
@@ -35,6 +39,23 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
         pedido.setIdMesa(SharedPrefsUtil.getSelectedTable(this));
         pedido.setIdUsuario(SharedPrefsUtil.getToken(this));
         pedidoRepository.saveOrder(pedido);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.show_orders:
+                startActivity(new Intent(this, ShowOrdersActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

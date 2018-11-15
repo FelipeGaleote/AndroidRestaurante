@@ -29,7 +29,9 @@
         <activity
             android:name=".presentation.activity.MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".presentation.activity.ChooseTableActivity"></activity>
+        <activity android:name=".presentation.activity.ChooseTableActivity" />
+        <activity android:name=".presentation.activity.ShowOrdersActivity"
+            android:label="Meus pedidos"></activity>
     </application>
 
 </manifest>
